@@ -15,9 +15,7 @@ class EditTask extends Component {
 
 
   submitChanges(){
-
-
-
+    
       console.log(this.props.taskProp, this.state.titleInput, this.state.descInput)
 
       axios.post(`http://localhost:5000/api/tasks/edit/${this.props.taskProp}`, {title: this.state.titleInput, description: this.state.descInput})
