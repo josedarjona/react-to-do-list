@@ -40,7 +40,7 @@
 
 
 
-button{
+.grn-btn {
   width: 300px;
   background-color: greenyellow;
   padding: 20px;
@@ -50,4 +50,9 @@ button{
 
 .add {
   float: right;
+}
+
+.list {
+  float: left;
+  width: 500px;
 }
