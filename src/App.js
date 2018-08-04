@@ -29,6 +29,20 @@ class App extends Component {
     })
   }
 
+
+  deleteTask(theIdOfTheTask){
+    axios.post(`http://localhost:5000/api/tasks/delete/${theIdOfTheTask}`, {})
+    .then((response)=>{
+      console.log(response)
+      // this.setState({theTasks: allTheTasks.data, showing: false})
+      this.getAllTheTasks()
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
+  }
+
   showTasks(){
     if(this.state.theTasks.length === 0){
       this.getAllTheTasks();
@@ -37,8 +51,12 @@ class App extends Component {
     return (
       this.state.theTasks.map((task, index) =>{
         return(
-      <div key={index}>
+      <div key={index}>     
+      <button onClick={()=> this.deleteTask(task._id)}style={{float: 'right', backgroundColor: 'red', padding: '10px', margin: '5px'}}>
+        Delete Tesk
+      </button>
       <button onClick={()=> {this.toggleEditForm(index)}} style={{float: 'right', backgroundColor: 'greenyellow', padding: '10px'}}> edit this task </button>
+
       <h3>{task.title}</h3>
       <p >{task.description} </p>
       {this.renderForm(index, task._id, task.title, task.description)}
@@ -88,7 +106,7 @@ class App extends Component {
     <AddTask blah={()=>this.getAllTheTasks()}></AddTask>
     </div>
     <div className="list">
-      <h2> List of Tasks </h2>
+    <h2> List of Tasks </h2>
     {this.showTasks()}
     </div>
 
